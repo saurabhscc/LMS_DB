@@ -1,0 +1,25 @@
+/*Create Table for Range partition*/
+
+CREATE TABLE new_hired_candidates (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  first_name varchar(100) NOT NULL,
+  middle_name varchar(100) DEFAULT NULL,
+  last_name varchar(100) NOT NULL,
+  email varchar(50) NOT NULL,
+  mobile_num bigint(20) NOT NULL,
+  hired_city varchar(50) NOT NULL,
+  hired_date datetime NOT NULL,
+  permanent_pincode int(11) DEFAULT NULL,
+  degree varchar(100) NOT NULL,
+  creator_stamp date DEFAULT NULL,
+  KEY (id)
+)
+PARTITION BY RANGE (TO_DAYS(hired_date)) (
+PARTITION p0 VALUES LESS THAN (TO_DAYS('2015-01-15')),
+PARTITION p1 VALUES LESS THAN (TO_DAYS('2017-06-30')),
+PARTITION p2 VALUES LESS THAN (TO_DAYS('2019-04-01')),
+PARTITION p3 VALUES LESS THAN (TO_DAYS('2021-09-10'))
+);
+
+
+
