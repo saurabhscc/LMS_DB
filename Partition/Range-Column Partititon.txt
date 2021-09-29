@@ -1,0 +1,50 @@
+/*Create Table for Range-Column partition*/
+CREATE TABLE hired_candidates_column_range(
+id int(11) NOT NULL ,
+first_name varchar(100) NOT NULL,
+middle_name varchar(100) DEFAULT NULL,
+last_name varchar(100) NOT NULL,
+email varchar(50) NOT NULL,
+mobile_num bigint(20) NOT NULL,
+/*Create Table for Column-Range partition*/
+
+hired_city varchar(50) NOT NULL,
+hired_date datetime NOT NULL,
+permanent_pincode int(11) DEFAULT NULL,
+degree varchar(100) NOT NULL,
+creator_stamp date DEFAULT NULL
+)
+PARTITION BY RANGE COLUMNS(id,hired_city)(
+PARTITION p0 VALUES LESS THAN (3,'Delhi'),
+PARTITION p1 VALUES LESS THAN (5,'Mumbai'),
+PARTITION p2 VALUES LESS THAN (8,'Pune')
+);
+
+
+/*Check partition created by table by select statement and where clause*/
+SELECT TABLE_NAME, PARTITION_NAME, TABLE_ROWS, AVG_ROW_LENGTH, DATA_LENGTH  
+FROM INFORMATION_SCHEMA.PARTITIONS  
+WHERE TABLE_SCHEMA = 'lms' AND TABLE_NAME = 'hired_candidates_column_range'; 
+
+
+
+/*Insert rows to tables*/
+
+
+insert into hired_candidates_column_range values(1,'Arun', 'Ajay', 'Patil', 'arun@gmail.com ', 9890111111, 'Delhi','2014-01-30',2222,'B.E','2014-01-30');
+insert into hired_candidates_column_range values(2,'Amit', 'Ajay', 'Patil', 'amit@gmail.com ', 9890111112, 'Delhi','2014-06-30',2222,'B.E','2014-06-30');
+insert into hired_candidates_column_range values(3,'Vijay', 'Ajay', 'Patil', 'vijay@gmail.com ', 9890111113, 'Kolkatta','2015-01-01',2222,'B.E','2014-01-30');
+insert into hired_candidates_column_range values(4,'Arun', 'Ajay', 'Shinde', 'aruns@gmail.com ', 9890111114, 'Chennai','2016-01-30',2223,'B.E','2016-01-30');
+insert into hired_candidates_column_range values(5,'Amit', 'Ajay', 'Shinde', 'amits@gmail.com ', 9890111115, 'Mumbai','2016-06-30',2223,'B.E','2016-06-30');
+insert into hired_candidates_column_range values(6,'Vijay', 'Ajay', 'Shinde', 'vijays@gmail.com ', 9890111116, 'Pune','2017-01-01',2223,'B.E','2017-01-01');
+insert into hired_candidates_column_range values(7,'Arun', 'Ajay', 'Musmade', 'arunm@gmail.com ', 9890111117, 'Mumbai','2018-01-30',4444,'Diploma','2018-01-30');
+insert into hired_candidates_column_range values(8,'Amit', 'Ajay', 'Musmade', 'amitm@gmail.com ', 9890111118, 'Chennai','2018-06-30',4444,'B.E','2018-06-30');
+
+
+
+
+/*Check partition created by table by select statement and where clause*/
+
+SELECT TABLE_NAME, PARTITION_NAME, TABLE_ROWS, AVG_ROW_LENGTH, DATA_LENGTH  
+FROM INFORMATION_SCHEMA.PARTITIONS  
+WHERE TABLE_SCHEMA = 'lms' AND TABLE_NAME = 'hired_candidates_column_range'; 
