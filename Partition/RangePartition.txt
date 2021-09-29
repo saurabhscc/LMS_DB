@@ -34,3 +34,11 @@ insert into new_hired_candidates values(9,'Vijay', 'Ajay', 'Musmade', 'vijaym@gm
 insert into new_hired_candidates values(10,'pranit', 'shekhar', 'Musmade', 'pranit@gmail.com ', 9890111120, 'GOA','2020-01-30',4444,'B.E','2020-01-30');
 insert into new_hired_candidates values(11,'Sumit', 'shekhar', 'Musmade', 'sumit@gmail.com ', 9890111121, 'Baroda','2020-06-30',4444,'B.E','2020-06-30');
 insert into new_hired_candidates values(12,'Sai', 'shekhar', 'Musmade', 'sai@gmail.com ', 9890111122, 'Pune','2021-01-01',4444,'Diploma','2021-01-01');
+
+/*verify record of table*/
+select * from new_hired_candidates;
+
+/*Check partition created by table by select statement and where clause*/
+SELECT TABLE_NAME, PARTITION_NAME, TABLE_ROWS, AVG_ROW_LENGTH, DATA_LENGTH  
+FROM INFORMATION_SCHEMA.PARTITIONS  
+WHERE TABLE_SCHEMA = 'lms' AND TABLE_NAME = 'new_hired_candidates'; 
