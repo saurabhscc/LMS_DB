@@ -1,0 +1,12 @@
+/*Alter the table to perform key partition*/
+
+ALTER TABLE hired_candidates_city_list
+PARTITION BY KEY()
+PARTITIONS 2;
+
+
+/*Check partition created by table*/
+
+SELECT TABLE_NAME, PARTITION_NAME, TABLE_ROWS, AVG_ROW_LENGTH, DATA_LENGTH  
+FROM INFORMATION_SCHEMA.PARTITIONS  
+WHERE TABLE_SCHEMA = 'lms' AND TABLE_NAME = 'hired_candidates_city_list'; 
