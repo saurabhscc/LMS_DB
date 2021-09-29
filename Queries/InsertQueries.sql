@@ -239,3 +239,29 @@ insert candidate_techstack_assignment values(3,3,3,null,'ontime',null,1);
 
 /* Display data of candidate_techstack_assignment table */
 select * from candidate_techstack_assignment ;
+
+
+/* insert data for hired_candidates table */
+insert into hired_candidates values(8, 'deepak', 'Kiran', 'Patil', 'deepak.584@gmail.com ', 8956748596, 'Pune','2019-12-13','B.E', 75.25,5245,5478,'Mumbai', 'Good', 'Good','Good','Good', '2000-01-01 01:00:00' ,1);
+insert into hired_candidates values(9, 'amit', 'sanjay', 'deshmukh', 'amit.11101@gmail.com ', 8956722222, 'Ratnagiri','2020-01-01','B.E', 70.05,5250,5483,'Banglore', 'Good', 'Good' , 'Good','Good', '2000-01-01 01:00:00' ,2);
+insert into hired_candidates values(10, 'Akshay', 'Anil', 'Pandit', 'akshay.1870@gmail.com ', 7878722234, 'Solapur','2021-03-01','Diploma', 80.40,4545,4523,'Banglore', 'Good', 'Good' , 'Good','Good', '2000-01-01 01:00:00',3);
+insert into hired_candidates values(11, 'deepak', 'Kiran', 'Patil', 'deepak.6@gmail.com ', 8956748596, 'Raigad','2019-12-13','B.E', 75.25,5245,5478,'Mumbai', 'Good', 'Good','Good','Good', '2001-01-01 02:00:00',1);
+insert into hired_candidates values(12, 'amit', 'sanjay', 'deshmukh', 'amit.13401@gmail.com ', 8956722222, 'Mumbai','2020-01-01','B.E', 70.05,5250,5483,'Banglore', 'Good', 'Good' , 'Good','Good', '2001-01-01 02:00:00',2);
+insert into hired_candidates values(13, 'Akshay', 'Anil', 'Pandit', 'akshay.110@gmail.com ', 7878722234, 'Ratnagiri','2021-03-01','Diploma', 80.40,4545,4523,'Banglore', 'Good', 'Good' , 'Good','Good', '2001-01-01 02:00:00',3);
+insert into hired_candidates values(14, 'amit', 'sanjay', 'deshmukh', 'amit.1301@gmail.com ', 8956722222, 'Raigad','2020-01-01','B.E', 70.05,5250,5483,'Banglore', 'Good', 'Good' , 'Good','Good','2002-01-01 03:00:00',2);
+insert into hired_candidates values(15, 'Akshay', 'Anil', 'Pandit', 'akshay.150@gmail.com ', 7878722234, 'Pune','2021-03-01','Diploma', 80.40,4545,4523,'Banglore', 'Good', 'Good' , 'Good','Good', '2002-01-01 03:00:00',3);
+insert into hired_candidates values(16, 'deepak', 'Kiran', 'Patil', 'deepak.09@gmail.com ', 8956748596, 'Pune','2019-12-13','B.E', 75.25,5245,5478,'Mumbai', 'Good', 'Good','Good','Good', '2002-01-01 03:00:00',4);
+insert into hired_candidates values(17, 'amit', 'sanjay', 'deshmukh', 'amit.1017@gmail.com ', 8956722222, 'Mumbai','2020-01-01','B.E', 70.05,5250,5483,'Banglore', 'Good', 'Good' , 'Good','Good', '2003-01-01 04:00:00',4);
+insert into hired_candidates values(18, 'Akshay', 'Anil', 'Pandit', 'akshay.100@gmail.com ', 7878722234, 'Hydrabad','2021-03-01','Diploma', 80.40,4545,4523,'Banglore', 'Good', 'Good' , 'Good','Good', '2003-01-01 04:00:00',5);
+insert into hired_candidates values(19, 'deepak', 'Kiran', 'Patil', 'deepak.684@gmail.com ', 8956748596, 'Raigad','2019-12-13','B.E', 75.25,5245,5478,'Mumbai', 'Good', 'Good','Good','Good', '2003-01-01 04:00:00',1);
+insert into hired_candidates values(20, 'amit', 'sanjay', 'deshmukh', 'amit.1901@gmail.com ', 8956722222, 'Mumbai','2020-01-01','B.E', 70.05,5250,5483,'Banglore', 'Good', 'Good' , 'Good','Good', '2004-01-01 05:00:00',5);
+insert into hired_candidates values(21, 'Akshay', 'Anil', 'Pandit', 'akshay.1099@gmail.com ', 7878722234, 'Hydrabad','2021-03-01','Diploma', 80.40,4545,4523,'Banglore', 'Good', 'Good' , 'Good','Good', '2004-01-01 05:00:00',6);
+insert into hired_candidates values(22, 'deepak', 'Kiran', 'Patil', 'deepak.64@gmail.com ', 8956748596, 'Pune','2019-12-13','B.E', 75.25,5245,5478,'Mumbai', 'Good', 'Good','Good','Good','2004-01-01 05:00:00',1);
+insert into hired_candidates values(23, 'amit', 'sanjay', 'deshmukh', 'amit.01@gmail.com ', 8956722222, 'Solapur','2020-01-01','B.E', 70.05,5250,5483,'Banglore', 'Good', 'Good' , 'Good','Good','2005-01-01 06:00:00',2);
+insert into hired_candidates values(24, 'Akshay', 'Anil', 'Pandit', 'akshay.010@gmail.com ', 7878722234, 'Hydrabad','2021-03-01','Diploma', 80.40,4545,4523,'Banglore', 'Good', 'Good' , 'Good','Good','2005-01-01 06:00:00',7);
+insert into hired_candidates values(25, 'deepak', 'Kiran', 'Patil', 'deepak.03584@gmail.com ', 8956748596, 'Pune','2019-12-13','B.E', 75.25,5245,5478,'Mumbai', 'Good', 'Good','Good','Good', '2005-01-01 06:00:00',1);
+insert into hired_candidates values(26, 'amit', 'sanjay', 'deshmukh', 'amit.701@gmail.com ', 8956722222, 'Mumbai','2020-01-01','B.E', 70.05,5250,5483,'Banglore', 'Good', 'Good' , 'Good','Good', '2006-01-01 07:00:00',2);
+insert into hired_candidates values(27, 'Akshay', 'Anil', 'Pandit', 'akshay.90@gmail.com ', 7878722234, 'Hydrabad','2021-03-01','Diploma', 80.40,4545,4523,'Banglore', 'Good', 'Good' , 'Good','Good', '2006-01-01 07:00:00',3);
+insert into hired_candidates values(28, 'deepak', 'Kiran', 'Patil', 'deepak.6635@gmail.com ', 8956748596, 'Solapur','2019-12-13','B.E', 75.25,5245,5478,'Mumbai', 'Good', 'Good','Good','Good', '2006-01-01 07:00:00',1);
+insert into hired_candidates values(29, 'amit', 'sanjay', 'deshmukh', 'amit.10001@gmail.com ', 8956722222, 'Mumbai','2020-01-01','B.E', 70.05,5250,5483,'Banglore', 'Good', 'Good' , 'Good','Good', '2007-01-01 08:00:00',2);
+insert into hired_candidates values(30, 'Akshay', 'Anil', 'Pandit', 'akshay.1099@gmail.com ', 7878722234, 'Hydrabad','2021-03-01','Diploma', 80.40,4545,4523,'Banglore', 'Good', 'Good' , 'Good','Good', '2007-01-01 08:00:00',3);
