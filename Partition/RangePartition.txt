@@ -42,3 +42,28 @@ select * from new_hired_candidates;
 SELECT TABLE_NAME, PARTITION_NAME, TABLE_ROWS, AVG_ROW_LENGTH, DATA_LENGTH  
 FROM INFORMATION_SCHEMA.PARTITIONS  
 WHERE TABLE_SCHEMA = 'lms' AND TABLE_NAME = 'new_hired_candidates'; 
+
+/*Insert another row to table*/
+insert into new_hired_candidates values(13,'Sid', 'shekhar', 'Musmade', 'sid@gmail.com ', 9890111123, 'Delhi','2021-01-01',4444,'Diploma','2021-01-01');
+
+
+/*Check partition created by table by select statement and where clause*/
+SELECT TABLE_NAME, PARTITION_NAME, TABLE_ROWS, AVG_ROW_LENGTH, DATA_LENGTH  
+FROM INFORMATION_SCHEMA.PARTITIONS  
+WHERE TABLE_SCHEMA = 'lms' AND TABLE_NAME = 'new_hired_candidates'; 
+
+
+/*Insert another row to table*/
+insert into new_hired_candidates values(14,'Vijay', 'Ajay', 'Kate', 'vijaykk@gmail.com ', 98901111124, 'Chennai','2017-03-01',2223,'B.E','2017-03-01');
+
+
+/*Check partition created by table by select statement and where clause*/
+SELECT TABLE_NAME, PARTITION_NAME, TABLE_ROWS, AVG_ROW_LENGTH, DATA_LENGTH  
+FROM INFORMATION_SCHEMA.PARTITIONS  
+WHERE TABLE_SCHEMA = 'lms' AND TABLE_NAME = 'new_hired_candidates'; 
+
+/*verify record of table*/
+select * from new_hired_candidates;
+
+
+
