@@ -1,0 +1,21 @@
+/* Create Table for List Partition*/
+
+CREATE TABLE hired_candidates_city_list (
+id int(11) NOT NULL ,
+first_name varchar(100) NOT NULL,
+middle_name varchar(100) DEFAULT NULL,
+last_name varchar(100) NOT NULL,
+email varchar(50) NOT NULL,
+mobile_num bigint(20) NOT NULL,
+hired_city varchar(50) NOT NULL,
+hired_date datetime NOT NULL,
+permanent_pincode int(11) DEFAULT NULL,
+degree varchar(100) NOT NULL,
+creator_stamp date DEFAULT NULL,
+Primary KEY (id)
+)
+PARTITION BY LIST (id) (
+PARTITION LIST_A VALUES IN (1,2,3),
+PARTITION LIST_B VALUES IN (4,5,6),
+PARTITION LIST_C VALUES IN (7,8,9)
+);
