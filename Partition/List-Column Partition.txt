@@ -1,0 +1,16 @@
+/*Alter the table to perform List-Column Partitioning*/
+
+ALTER TABLE hired_candidates_column_range
+PARTITION BY LIST (id) (
+PARTITION LIST_A VALUES IN (1,2,3),
+PARTITION LIST_B VALUES IN (4,5,6),
+PARTITION LIST_C VALUES IN (7,8)
+);
+
+
+/*Check partition created by table by select statement and where clause*/
+
+
+SELECT TABLE_NAME, PARTITION_NAME, TABLE_ROWS, AVG_ROW_LENGTH, DATA_LENGTH  
+FROM INFORMATION_SCHEMA.PARTITIONS  
+WHERE TABLE_SCHEMA = 'lms' AND TABLE_NAME = 'hired_candidates_column_range'; 
