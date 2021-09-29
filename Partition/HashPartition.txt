@@ -1,0 +1,11 @@
+/*Alter the table to perform hash partition*/
+
+ALTER TABLE new_hired_candidates
+PARTITION BY HASH(id)
+PARTITIONS 4;
+
+/*Check partition created by table*/
+
+SELECT TABLE_NAME, PARTITION_NAME, TABLE_ROWS, AVG_ROW_LENGTH, DATA_LENGTH  
+FROM INFORMATION_SCHEMA.PARTITIONS  
+WHERE TABLE_SCHEMA = 'lms' AND TABLE_NAME = 'new_hired_candidates'; 
