@@ -26,3 +26,21 @@ SELECT TABLE_NAME, PARTITION_NAME, TABLE_ROWS
 FROM INFORMATION_SCHEMA.PARTITIONS  
 WHERE TABLE_SCHEMA = 'lms' AND TABLE_NAME = 'hired_candidates_sub_partition'; 
 
+/*Insert row to table*/
+insert into hired_candidates_sub_partition values(1,'Arun', 'Ajay', 'Patil', 'arun@gmail.com ', 9890111111, 'Delhi','2014-01-30',2222,'B.E','2014-01-30');
+
+/*Check partition created by table by select statement and where clause*/
+
+SELECT TABLE_NAME, PARTITION_NAME, TABLE_ROWS  
+FROM INFORMATION_SCHEMA.PARTITIONS  
+WHERE TABLE_SCHEMA = 'lms' AND TABLE_NAME = 'hired_candidates_sub_partition'; 
+
+/*Insert row to table*/
+
+insert into hired_candidates_sub_partition values(2,'Amit', 'Ajay', 'Patil', 'amit@gmail.com ', 9890111112, 'Delhi','2014-06-30',2222,'B.E','2014-06-30');
+
+/*Check partition created by table by select statement and where clause*/
+
+SELECT TABLE_NAME, PARTITION_NAME, TABLE_ROWS  
+FROM INFORMATION_SCHEMA.PARTITIONS  
+WHERE TABLE_SCHEMA = 'lms' AND TABLE_NAME = 'hired_candidates_sub_partition'; 
