@@ -19,3 +19,30 @@ PARTITION LIST_A VALUES IN (1,2,3),
 PARTITION LIST_B VALUES IN (4,5,6),
 PARTITION LIST_C VALUES IN (7,8,9)
 );
+
+
+
+/*Insert rows to tables*/
+insert into hired_candidates_city_list values(1,'Arun', 'Ajay', 'Patil', 'arun@gmail.com ', 9890111111, 'Delhi','2014-01-30',2222,'B.E','2014-01-30');
+insert into hired_candidates_city_list values(2,'Amit', 'Ajay', 'Patil', 'amit@gmail.com ', 9890111112, 'Delhi','2014-06-30',2222,'B.E','2014-06-30');
+insert into hired_candidates_city_list values(3,'Vijay', 'Ajay', 'Patil', 'vijay@gmail.com ', 9890111113, 'Kolkatta','2015-01-01',2222,'B.E','2014-01-30');
+insert into hired_candidates_city_list values(4,'Arun', 'Ajay', 'Shinde', 'aruns@gmail.com ', 9890111114, 'Chennai','2016-01-30',2223,'B.E','2016-01-30');
+insert into hired_candidates_city_list values(5,'Amit', 'Ajay', 'Shinde', 'amits@gmail.com ', 9890111115, 'Mumbai','2016-06-30',2223,'B.E','2016-06-30');
+insert into hired_candidates_city_list values(6,'Vijay', 'Ajay', 'Shinde', 'vijays@gmail.com ', 9890111116, 'Pune','2017-01-01',2223,'B.E','2017-01-01');
+insert into hired_candidates_city_list values(7,'Arun', 'Ajay', 'Musmade', 'arunm@gmail.com ', 9890111117, 'Mumbai','2018-01-30',4444,'Diploma','2018-01-30');
+insert into hired_candidates_city_list values(8,'Amit', 'Ajay', 'Musmade', 'amitm@gmail.com ', 9890111118, 'Chennai','2018-06-30',4444,'B.E','2018-06-30');
+insert into hired_candidates_city_list values(9,'Vijay', 'Ajay', 'Musmade', 'vijaym@gmail.com ', 9890111119, 'Delhi','2019-01-01',4444,'B.E','2019-01-01');
+
+
+/*Check partition created by table by select statement and where clause*/
+
+SELECT TABLE_NAME, PARTITION_NAME, TABLE_ROWS, AVG_ROW_LENGTH, DATA_LENGTH  
+FROM INFORMATION_SCHEMA.PARTITIONS  
+WHERE TABLE_SCHEMA = 'lms' AND TABLE_NAME = 'hired_candidates_city_list'; 
+
+
+
+
+
+
+
