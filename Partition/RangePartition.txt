@@ -21,5 +21,16 @@ PARTITION p2 VALUES LESS THAN (TO_DAYS('2019-04-01')),
 PARTITION p3 VALUES LESS THAN (TO_DAYS('2021-09-10'))
 );
 
-
-
+/*Insert rows to tables*/
+insert into new_hired_candidates values(1,'Arun', 'Ajay', 'Patil', 'arun@gmail.com ', 9890111111, 'Delhi','2014-01-30',2222,'B.E','2014-01-30');
+insert into new_hired_candidates values(2,'Amit', 'Ajay', 'Patil', 'amit@gmail.com ', 9890111112, 'Delhi','2014-06-30',2222,'B.E','2014-06-30');
+insert into new_hired_candidates values(3,'Vijay', 'Ajay', 'Patil', 'vijay@gmail.com ', 9890111113, 'Kolkatta','2015-01-01',2222,'B.E','2014-01-30');
+insert into new_hired_candidates values(4,'Arun', 'Ajay', 'Shinde', 'aruns@gmail.com ', 9890111114, 'Chennai','2016-01-30',2223,'B.E','2016-01-30');
+insert into new_hired_candidates values(5,'Amit', 'Ajay', 'Shinde', 'amits@gmail.com ', 9890111115, 'Mumbai','2016-06-30',2223,'B.E','2016-06-30');
+insert into new_hired_candidates values(6,'Vijay', 'Ajay', 'Shinde', 'vijays@gmail.com ', 9890111116, 'Pune','2017-01-01',2223,'B.E','2017-01-01');
+insert into new_hired_candidates values(7,'Arun', 'Ajay', 'Musmade', 'arunm@gmail.com ', 9890111117, 'Mumbai','2018-01-30',4444,'Diploma','2018-01-30');
+insert into new_hired_candidates values(8,'Amit', 'Ajay', 'Musmade', 'amitm@gmail.com ', 9890111118, 'Chennai','2018-06-30',4444,'B.E','2018-06-30');
+insert into new_hired_candidates values(9,'Vijay', 'Ajay', 'Musmade', 'vijaym@gmail.com ', 9890111119, 'Delhi','2019-01-01',4444,'B.E','2019-01-01');
+insert into new_hired_candidates values(10,'pranit', 'shekhar', 'Musmade', 'pranit@gmail.com ', 9890111120, 'GOA','2020-01-30',4444,'B.E','2020-01-30');
+insert into new_hired_candidates values(11,'Sumit', 'shekhar', 'Musmade', 'sumit@gmail.com ', 9890111121, 'Baroda','2020-06-30',4444,'B.E','2020-06-30');
+insert into new_hired_candidates values(12,'Sai', 'shekhar', 'Musmade', 'sai@gmail.com ', 9890111122, 'Pune','2021-01-01',4444,'Diploma','2021-01-01');
