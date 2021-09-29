@@ -44,3 +44,19 @@ insert into hired_candidates_sub_partition values(2,'Amit', 'Ajay', 'Patil', 'am
 SELECT TABLE_NAME, PARTITION_NAME, TABLE_ROWS  
 FROM INFORMATION_SCHEMA.PARTITIONS  
 WHERE TABLE_SCHEMA = 'lms' AND TABLE_NAME = 'hired_candidates_sub_partition'; 
+
+
+/*Insert rows to table*/
+insert into hired_candidates_sub_partition values(3,'Vijay', 'Ajay', 'Patil', 'vijay@gmail.com ', 9890111113, 'Kolkatta','2015-01-01',2222,'B.E','2014-01-30');
+insert into hired_candidates_sub_partition values(4,'Arun', 'Ajay', 'Shinde', 'aruns@gmail.com ', 9890111114, 'Chennai','2016-01-30',2223,'B.E','2016-01-30');
+insert into hired_candidates_sub_partition values(5,'Amit', 'Ajay', 'Shinde', 'amits@gmail.com ', 9890111115, 'Mumbai','2016-06-30',2223,'B.E','2016-06-30');
+insert into hired_candidates_sub_partition values(6,'Vijay', 'Ajay', 'Shinde', 'vijays@gmail.com ', 9890111116, 'Pune','2017-01-01',2223,'B.E','2017-01-01');
+insert into hired_candidates_sub_partition values(7,'Arun', 'Ajay', 'Musmade', 'arunm@gmail.com ', 9890111117, 'Mumbai','2018-01-30',4444,'Diploma','2018-01-30');
+insert into hired_candidates_sub_partition values(8,'Amit', 'Ajay', 'Musmade', 'amitm@gmail.com ', 9890111118, 'Chennai','2018-06-30',4444,'B.E','2018-06-30');
+insert into hired_candidates_sub_partition values(9,'Vijay', 'Ajay', 'Musmade', 'vijaym@gmail.com ', 9890111119, 'Delhi','2019-01-01',4444,'B.E','2019-01-01');
+
+/*Check sub-partition created by table by select statement and where clause*/
+
+SELECT TABLE_NAME, PARTITION_NAME, TABLE_ROWS  
+FROM INFORMATION_SCHEMA.PARTITIONS  
+WHERE TABLE_SCHEMA = 'lms' AND TABLE_NAME = 'hired_candidates_sub_partition'; 
