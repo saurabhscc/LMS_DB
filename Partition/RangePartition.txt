@@ -66,4 +66,8 @@ WHERE TABLE_SCHEMA = 'lms' AND TABLE_NAME = 'new_hired_candidates';
 select * from new_hired_candidates;
 
 
+/*DROP  Partition if not required */
+ALTER TABLE new_hired_candidates TRUNCATE PARTITION p3;
 
+/*verify record of table, if drop P3 partition then row get deleted*/
+select * from new_hired_candidates;
