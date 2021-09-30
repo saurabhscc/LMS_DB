@@ -1,0 +1,103 @@
+/* DATABASE RESTORE */
+
+/*Create new database in commandline client */
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| coders             |
+| cpulogdata         |
+| demo               |
+| demo1              |
+| employee           |
+| information_schema |
+| lms                |
+| lmsdb              |
+| mysql              |
+| newdemo1           |
+| performance_schema |
+| pets               |
+| sakila             |
+| sys                |
+| world              |
++--------------------+
+15 rows in set (0.03 sec)
+
+mysql> use demo;
+Database changed
+mysql> show tables;
++----------------+
+| Tables_in_demo |
++----------------+
+| employees      |
++----------------+
+1 row in set (0.02 sec)
+
+/*drop database or Can go with new database*/
+
+mysql> drop database demo;
+Query OK, 1 row affected (0.16 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| coders             |
+| cpulogdata         |
+| demo1              |
+| employee           |
+| information_schema |
+| lms                |
+| lmsdb              |
+| mysql              |
+| newdemo1           |
+| performance_schema |
+| pets               |
+| sakila             |
+| sys                |
+| world              |
++--------------------+
+14 rows in set (0.02 sec)
+
+
+/* create database to restore database */
+
+mysql> create database demo;
+Query OK, 1 row affected (0.03 sec)
+
+mysql> use demo;
+Database changed
+
+/* check for the tables */
+
+mysql> show tables;
+Empty set (0.02 sec)
+
+
+ 
+/* Open command prompt */
+
+Microsoft Windows [Version 10.0.19043.1237]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\saura>
+
+/* give the path of MYSQL which installed in machine */
+
+C:\Users\saura>cd C:\Program Files\MySQL\MySQL Server 8.0\bin
+
+
+/* Import dump file to database created in commandline ,give path of backup file extension. Note-" < " to import */
+
+C:\Program Files\MySQL\MySQL Server 8.0\bin>mysql -u root -p demo < C:\Users\saura\MYSQLbackup\demo.sql
+Enter password: **********
+
+/*check for database after import done in cmd*/
+mysql> show tables;
++----------------+
+| Tables_in_demo |
++----------------+
+| employees      |
++----------------+
+1 row in set (0.00 sec)
