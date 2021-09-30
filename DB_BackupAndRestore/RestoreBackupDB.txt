@@ -1,0 +1,189 @@
+--------------**cpulogdata Database**------------------------
+
+/*Command Prompt for backup database*/
+
+Microsoft Windows [Version 10.0.19043.1237]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\saura>cd C:\Program Files\MySQL\MySQL Server 8.0\bin
+
+C:\Program Files\MySQL\MySQL Server 8.0\bin>mysqldump -u root -p cpulogdata > C:\Users\saura\MYSQLbackup\cpulogdata.sql
+Enter password: **********
+
+
+/* Mysql command line client for create database for restore */
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| coders             |
+| cpulogdata         |
+| demo               |
+| demo1              |
+| demo1copy          |
+| employee           |
+| information_schema |
+| lms                |
+| lmsdb              |
+| mysql              |
+| performance_schema |
+| pets               |
+| sakila             |
+| sys                |
+| world              |
++--------------------+
+15 rows in set (0.05 sec)
+
+mysql> create database cpulogdatacopy;
+Query OK, 1 row affected (0.04 sec)
+
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| coders             |
+| cpulogdata         |
+| cpulogdatacopy     |
+| demo               |
+| demo1              |
+| demo1copy          |
+| employee           |
+| information_schema |
+| lms                |
+| lmsdb              |
+| mysql              |
+| performance_schema |
+| pets               |
+| sakila             |
+| sys                |
+| world              |
++--------------------+
+16 rows in set (0.00 sec)
+
+
+
+/* Before restore database */
+
+mysql> use cpulogdatacopy;
+Database changed
+
+mysql> show tables;
+Empty set (0.00 sec)
+
+/*Command Prompt for restore database*/
+
+C:\Program Files\MySQL\MySQL Server 8.0\bin>mysql -u root -p cpulogdatacopy < C:\Users\saura\MYSQLbackup\cpulogdata.sql
+Enter password: **********
+
+C:\Program Files\MySQL\MySQL Server 8.0\bin>
+
+/* After Restore database */
+
+mysql> show tables;
++--------------------------+
+| Tables_in_cpulogdatacopy |
++--------------------------+
+| logdata                  |
++--------------------------+
+1 row in set (0.02 sec)
+
+
+--------------**Lms Database**------------------------
+
+/* Command Prompt for backup database */
+
+Microsoft Windows [Version 10.0.19043.1237]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\saura>cd C:\Program Files\MySQL\MySQL Server 8.0\bin
+
+C:\Program Files\MySQL\MySQL Server 8.0\bin>
+
+C:\Program Files\MySQL\MySQL Server 8.0\bin>mysqldump -u root -p lms > C:\Users\saura\MYSQLbackup\lms.sql
+Enter password: **********
+
+
+/* Mysql command line client for create database for restore */
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| coders             |
+| cpulogdata         |
+| cpulogdatacopy     |
+| demo               |
+| demo1              |
+| demo1copy          |
+| employee           |
+| information_schema |
+| lms                |
+| lmsdb              |
+| mysql              |
+| performance_schema |
+| pets               |
+| sakila             |
+| sys                |
+| world              |
++--------------------+
+16 rows in set (0.00 sec)
+
+/* Before restore database */
+
+mysql> create database lmscopy;
+Query OK, 1 row affected (0.02 sec)
+
+mysql> use lmscopy;
+Database changed
+
+mysql> show tables;
+Empty set (0.00 sec)
+
+/*Command Prompt for restore database*/
+
+C:\Program Files\MySQL\MySQL Server 8.0\bin>mysql -u root -p lmscopy < C:\Users\saura\MYSQLbackup\lms.sql
+Enter password: **********
+
+/* After Restore database */
+
+mysql> show tables;
++--------------------------------+
+| Tables_in_lmscopy              |
++--------------------------------+
+| app_parameters                 |
+| bycitymentorname               |
+| candidate_bank_det             |
+| candidate_docs                 |
+| candidate_qualification        |
+| candidate_techstack_assignment |
+| candidates                     |
+| candidates_bank_det_check      |
+| candidates_education_det_check |
+| candidates_personal_det_check  |
+| candidates_previous_info       |
+| cityname                       |
+| company                        |
+| company_requirement            |
+| fellowship_candidates          |
+| hired_candidates               |
+| hired_candidates_city_list     |
+| hired_candidates_column_range  |
+| hired_candidates_sub_partition |
+| lab                            |
+| lab_threshold                  |
+| maker_program                  |
+| mentor                         |
+| mentor_ideation_map            |
+| mentor_techstack               |
+| new_hired_candidates           |
+| previousdetail                 |
+| tech_stack                     |
+| tech_type                      |
+| temporary_mis                  |
+| user_details                   |
+| user_engagement_mis            |
+| user_roles                     |
++--------------------------------+
+33 rows in set (0.04 sec)
