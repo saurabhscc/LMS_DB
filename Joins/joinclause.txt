@@ -1,0 +1,296 @@
+/*insert rows to tables */
+
+mysql> insert user_details values(4,'pravin.6@gmail.com','Pravin','Nehe','pravin@10',8956748596,1);
+Query OK, 1 row affected (0.12 sec)
+
+mysql> insert user_details values(5,'akash.111@gmail.com','Akash','Shinde','akash@12',7875721134,1);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert user_details values(6,'amit.001@gmail.com ','amit','mane','amit@13',8900725222,1);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert user_details values(7,'deepak.911@gmail.com','deepak','deshmane','deepak1@1',8356748596,1);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert user_details values(8,'sai.1011@gmail.com','sai','Pandit','sai@1',7858722234,1);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert user_details values(10,'shree.684@gmail.com','shree','patil','shree@21',8056548596,1);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert user_details values(11,'akshay.130@gmail.com','Akshay','Pandit','akshay@1',7772822234,1);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert user_details values(12,'amit.1041@gmail.com ','amit','deshmukh','amit@14',8956000222,1);
+Query OK, 1 row affected (0.01 sec)
+
+
+mysql> select * from user_roles;
++---------+-----------+
+| user_id | role_name |
++---------+-----------+
+|       2 | Developer |
+|       3 | Tester    |
++---------+-----------+
+2 rows in set (0.08 sec)
+
+/*truncate table*/
+
+mysql> truncate table user_roles;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> select * from user_roles;
+Empty set (0.02 sec)
+
+mysql> insert user_roles values(1,'Manager');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert user_roles values(2,'Developer');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert user_roles values(3,'Tester');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert user_roles values(4,'Senior Engineer');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert user_roles values(5,'Tester');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert user_roles values(6,'JrAssociate');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert user_roles values(7,'Senior Engineer');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert user_roles values(8,'Developer');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert user_roles values(9,'JrAssociate');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert user_roles values(10,'Developer');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert user_roles values(11,'Manager');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert user_roles values(12,'SrAssociate');
+Query OK, 1 row affected (0.01 sec)
+
+
+/*Inner or Simple Join  */
+
+mysql> SELECT user_roles.role_name, user_details.first_name, user_details.last_name
+    -> FROM user_roles
+    -> INNER JOIN user_details
+    -> ON user_roles.user_id = user_details.id;
+
++-----------------+------------+-----------+
+| role_name       | first_name | last_name |
++-----------------+------------+-----------+
+| Manager         | deepak     | patil     |
+| Developer       | amit       | deshmukh  |
+| Tester          | Akshay     | Pandit    |
+| Senior Engineer | Pravin     | Nehe      |
+| Tester          | Akash      | Shinde    |
+| JrAssociate     | amit       | mane      |
+| Senior Engineer | deepak     | deshmane  |
+| Developer       | sai        | Pandit    |
+| Developer       | shree      | patil     |
+| Manager         | Akshay     | Pandit    |
+| SrAssociate     | amit       | deshmukh  |
++-----------------+------------+-----------+
+11 rows in set (0.00 sec)
+
+
+/* Left outer or Left Join  */
+
+mysql> SELECT user_roles.role_name, user_details.first_name, user_details.last_name
+    -> FROM user_roles
+    -> LEFT JOIN user_details
+    -> ON user_roles.user_id = user_details.id;
++-----------------+------------+-----------+
+| role_name       | first_name | last_name |
++-----------------+------------+-----------+
+| Manager         | deepak     | patil     |
+| Developer       | amit       | deshmukh  |
+| Tester          | Akshay     | Pandit    |
+| Senior Engineer | Pravin     | Nehe      |
+| Tester          | Akash      | Shinde    |
+| JrAssociate     | amit       | mane      |
+| Senior Engineer | deepak     | deshmane  |
+| Developer       | sai        | Pandit    |
+| JrAssociate     | NULL       | NULL      |
+| Developer       | shree      | patil     |
+| Manager         | Akshay     | Pandit    |
+| SrAssociate     | amit       | deshmukh  |
++-----------------+------------+-----------+
+12 rows in set (0.01 sec)
+
+/* Right outer or Right Join */
+
+mysql> SELECT user_details.first_name, user_details.last_name, user_roles.role_name
+    -> FROM user_details
+    -> RIGHT JOIN user_roles
+    -> ON user_details.id = user_roles.user_id;
++------------+-----------+-----------------+
+| first_name | last_name | role_name       |
++------------+-----------+-----------------+
+| deepak     | patil     | Manager         |
+| amit       | deshmukh  | Developer       |
+| Akshay     | Pandit    | Tester          |
+| Pravin     | Nehe      | Senior Engineer |
+| Akash      | Shinde    | Tester          |
+| amit       | mane      | JrAssociate     |
+| deepak     | deshmane  | Senior Engineer |
+| sai        | Pandit    | Developer       |
+| NULL       | NULL      | JrAssociate     |
+| shree      | patil     | Developer       |
+| Akshay     | Pandit    | Manager         |
+| amit       | deshmukh  | SrAssociate     |
++------------+-----------+-----------------+
+12 rows in set (0.01 sec)
+
+
+/* cross join*/
+mysql> SELECT user_details.id, user_details.email, user_details.contact_number ,user_roles.user_id, user_roles.role_name
+    -> FROM user_details
+    -> CROSS JOIN user_roles;
++----+-------------------------+----------------+---------+-----------------+
+| id | email                   | contact_number | user_id | role_name       |
++----+-------------------------+----------------+---------+-----------------+
+| 12 | amit.1041@gmail.com     |     8956000222 |       1 | Manager         |
+| 11 | akshay.130@gmail.com    |     7772822234 |       1 | Manager         |
+| 10 | shree.684@gmail.com     |     8056548596 |       1 | Manager         |
+|  8 | sai.1011@gmail.com      |     7858722234 |       1 | Manager         |
+|  7 | deepak.911@gmail.com    |     8356748596 |       1 | Manager         |
+|  6 | amit.001@gmail.com      |     8900725222 |       1 | Manager         |
+|  5 | akash.111@gmail.com     |     7875721134 |       1 | Manager         |
+|  4 | pravin.6@gmail.com      |     8956748596 |       1 | Manager         |
+|  2 | amit.101@gmail.com      |     8956722222 |       1 | Manager         |
+|  3 | akshay.10@gmail.com     |     7878722234 |       1 | Manager         |
+|  1 | deepak.63584@gmail.com  |     8956748596 |       1 | Manager         |
+| 12 | amit.1041@gmail.com     |     8956000222 |       2 | Developer       |
+| 11 | akshay.130@gmail.com    |     7772822234 |       2 | Developer       |
+| 10 | shree.684@gmail.com     |     8056548596 |       2 | Developer       |
+|  8 | sai.1011@gmail.com      |     7858722234 |       2 | Developer       |
+|  7 | deepak.911@gmail.com    |     8356748596 |       2 | Developer       |
+|  6 | amit.001@gmail.com      |     8900725222 |       2 | Developer       |
+|  5 | akash.111@gmail.com     |     7875721134 |       2 | Developer       |
+|  4 | pravin.6@gmail.com      |     8956748596 |       2 | Developer       |
+|  2 | amit.101@gmail.com      |     8956722222 |       2 | Developer       |
+|  3 | akshay.10@gmail.com     |     7878722234 |       2 | Developer       |
+|  1 | deepak.63584@gmail.com  |     8956748596 |       2 | Developer       |
+| 12 | amit.1041@gmail.com     |     8956000222 |       3 | Tester          |
+| 11 | akshay.130@gmail.com    |     7772822234 |       3 | Tester          |
+| 10 | shree.684@gmail.com     |     8056548596 |       3 | Tester          |
+|  8 | sai.1011@gmail.com      |     7858722234 |       3 | Tester          |
+|  7 | deepak.911@gmail.com    |     8356748596 |       3 | Tester          |
+|  6 | amit.001@gmail.com      |     8900725222 |       3 | Tester          |
+|  5 | akash.111@gmail.com     |     7875721134 |       3 | Tester          |
+|  4 | pravin.6@gmail.com      |     8956748596 |       3 | Tester          |
+|  2 | amit.101@gmail.com      |     8956722222 |       3 | Tester          |
+|  3 | akshay.10@gmail.com     |     7878722234 |       3 | Tester          |
+|  1 | deepak.63584@gmail.com  |     8956748596 |       3 | Tester          |
+| 12 | amit.1041@gmail.com     |     8956000222 |       4 | Senior Engineer |
+| 11 | akshay.130@gmail.com    |     7772822234 |       4 | Senior Engineer |
+| 10 | shree.684@gmail.com     |     8056548596 |       4 | Senior Engineer |
+|  8 | sai.1011@gmail.com      |     7858722234 |       4 | Senior Engineer |
+|  7 | deepak.911@gmail.com    |     8356748596 |       4 | Senior Engineer |
+|  6 | amit.001@gmail.com      |     8900725222 |       4 | Senior Engineer |
+|  5 | akash.111@gmail.com     |     7875721134 |       4 | Senior Engineer |
+|  4 | pravin.6@gmail.com      |     8956748596 |       4 | Senior Engineer |
+|  2 | amit.101@gmail.com      |     8956722222 |       4 | Senior Engineer |
+|  3 | akshay.10@gmail.com     |     7878722234 |       4 | Senior Engineer |
+|  1 | deepak.63584@gmail.com  |     8956748596 |       4 | Senior Engineer |
+| 12 | amit.1041@gmail.com     |     8956000222 |       5 | Tester          |
+| 11 | akshay.130@gmail.com    |     7772822234 |       5 | Tester          |
+| 10 | shree.684@gmail.com     |     8056548596 |       5 | Tester          |
+|  8 | sai.1011@gmail.com      |     7858722234 |       5 | Tester          |
+|  7 | deepak.911@gmail.com    |     8356748596 |       5 | Tester          |
+|  6 | amit.001@gmail.com      |     8900725222 |       5 | Tester          |
+|  5 | akash.111@gmail.com     |     7875721134 |       5 | Tester          |
+|  4 | pravin.6@gmail.com      |     8956748596 |       5 | Tester          |
+|  2 | amit.101@gmail.com      |     8956722222 |       5 | Tester          |
+|  3 | akshay.10@gmail.com     |     7878722234 |       5 | Tester          |
+|  1 | deepak.63584@gmail.com  |     8956748596 |       5 | Tester          |
+| 12 | amit.1041@gmail.com     |     8956000222 |       6 | JrAssociate     |
+| 11 | akshay.130@gmail.com    |     7772822234 |       6 | JrAssociate     |
+| 10 | shree.684@gmail.com     |     8056548596 |       6 | JrAssociate     |
+|  8 | sai.1011@gmail.com      |     7858722234 |       6 | JrAssociate     |
+|  7 | deepak.911@gmail.com    |     8356748596 |       6 | JrAssociate     |
+|  6 | amit.001@gmail.com      |     8900725222 |       6 | JrAssociate     |
+|  5 | akash.111@gmail.com     |     7875721134 |       6 | JrAssociate     |
+|  4 | pravin.6@gmail.com      |     8956748596 |       6 | JrAssociate     |
+|  2 | amit.101@gmail.com      |     8956722222 |       6 | JrAssociate     |
+|  3 | akshay.10@gmail.com     |     7878722234 |       6 | JrAssociate     |
+|  1 | deepak.63584@gmail.com  |     8956748596 |       6 | JrAssociate     |
+| 12 | amit.1041@gmail.com     |     8956000222 |       7 | Senior Engineer |
+| 11 | akshay.130@gmail.com    |     7772822234 |       7 | Senior Engineer |
+| 10 | shree.684@gmail.com     |     8056548596 |       7 | Senior Engineer |
+|  8 | sai.1011@gmail.com      |     7858722234 |       7 | Senior Engineer |
+|  7 | deepak.911@gmail.com    |     8356748596 |       7 | Senior Engineer |
+|  6 | amit.001@gmail.com      |     8900725222 |       7 | Senior Engineer |
+|  5 | akash.111@gmail.com     |     7875721134 |       7 | Senior Engineer |
+|  4 | pravin.6@gmail.com      |     8956748596 |       7 | Senior Engineer |
+|  2 | amit.101@gmail.com      |     8956722222 |       7 | Senior Engineer |
+|  3 | akshay.10@gmail.com     |     7878722234 |       7 | Senior Engineer |
+|  1 | deepak.63584@gmail.com  |     8956748596 |       7 | Senior Engineer |
+| 12 | amit.1041@gmail.com     |     8956000222 |       8 | Developer       |
+| 11 | akshay.130@gmail.com    |     7772822234 |       8 | Developer       |
+| 10 | shree.684@gmail.com     |     8056548596 |       8 | Developer       |
+|  8 | sai.1011@gmail.com      |     7858722234 |       8 | Developer       |
+|  7 | deepak.911@gmail.com    |     8356748596 |       8 | Developer       |
+|  6 | amit.001@gmail.com      |     8900725222 |       8 | Developer       |
+|  5 | akash.111@gmail.com     |     7875721134 |       8 | Developer       |
+|  4 | pravin.6@gmail.com      |     8956748596 |       8 | Developer       |
+|  2 | amit.101@gmail.com      |     8956722222 |       8 | Developer       |
+|  3 | akshay.10@gmail.com     |     7878722234 |       8 | Developer       |
+|  1 | deepak.63584@gmail.com  |     8956748596 |       8 | Developer       |
+| 12 | amit.1041@gmail.com     |     8956000222 |       9 | JrAssociate     |
+| 11 | akshay.130@gmail.com    |     7772822234 |       9 | JrAssociate     |
+| 10 | shree.684@gmail.com     |     8056548596 |       9 | JrAssociate     |
+|  8 | sai.1011@gmail.com      |     7858722234 |       9 | JrAssociate     |
+|  7 | deepak.911@gmail.com    |     8356748596 |       9 | JrAssociate     |
+|  6 | amit.001@gmail.com      |     8900725222 |       9 | JrAssociate     |
+|  5 | akash.111@gmail.com     |     7875721134 |       9 | JrAssociate     |
+|  4 | pravin.6@gmail.com      |     8956748596 |       9 | JrAssociate     |
+|  2 | amit.101@gmail.com      |     8956722222 |       9 | JrAssociate     |
+|  3 | akshay.10@gmail.com     |     7878722234 |       9 | JrAssociate     |
+|  1 | deepak.63584@gmail.com  |     8956748596 |       9 | JrAssociate     |
+| 12 | amit.1041@gmail.com     |     8956000222 |      10 | Developer       |
+| 11 | akshay.130@gmail.com    |     7772822234 |      10 | Developer       |
+| 10 | shree.684@gmail.com     |     8056548596 |      10 | Developer       |
+|  8 | sai.1011@gmail.com      |     7858722234 |      10 | Developer       |
+|  7 | deepak.911@gmail.com    |     8356748596 |      10 | Developer       |
+|  6 | amit.001@gmail.com      |     8900725222 |      10 | Developer       |
+|  5 | akash.111@gmail.com     |     7875721134 |      10 | Developer       |
+|  4 | pravin.6@gmail.com      |     8956748596 |      10 | Developer       |
+|  2 | amit.101@gmail.com      |     8956722222 |      10 | Developer       |
+|  3 | akshay.10@gmail.com     |     7878722234 |      10 | Developer       |
+|  1 | deepak.63584@gmail.com  |     8956748596 |      10 | Developer       |
+| 12 | amit.1041@gmail.com     |     8956000222 |      11 | Manager         |
+| 11 | akshay.130@gmail.com    |     7772822234 |      11 | Manager         |
+| 10 | shree.684@gmail.com     |     8056548596 |      11 | Manager         |
+|  8 | sai.1011@gmail.com      |     7858722234 |      11 | Manager         |
+|  7 | deepak.911@gmail.com    |     8356748596 |      11 | Manager         |
+|  6 | amit.001@gmail.com      |     8900725222 |      11 | Manager         |
+|  5 | akash.111@gmail.com     |     7875721134 |      11 | Manager         |
+|  4 | pravin.6@gmail.com      |     8956748596 |      11 | Manager         |
+|  2 | amit.101@gmail.com      |     8956722222 |      11 | Manager         |
+|  3 | akshay.10@gmail.com     |     7878722234 |      11 | Manager         |
+|  1 | deepak.63584@gmail.com  |     8956748596 |      11 | Manager         |
+| 12 | amit.1041@gmail.com     |     8956000222 |      12 | SrAssociate     |
+| 11 | akshay.130@gmail.com    |     7772822234 |      12 | SrAssociate     |
+| 10 | shree.684@gmail.com     |     8056548596 |      12 | SrAssociate     |
+|  8 | sai.1011@gmail.com      |     7858722234 |      12 | SrAssociate     |
+|  7 | deepak.911@gmail.com    |     8356748596 |      12 | SrAssociate     |
+|  6 | amit.001@gmail.com      |     8900725222 |      12 | SrAssociate     |
+|  5 | akash.111@gmail.com     |     7875721134 |      12 | SrAssociate     |
+|  4 | pravin.6@gmail.com      |     8956748596 |      12 | SrAssociate     |
+|  2 | amit.101@gmail.com      |     8956722222 |      12 | SrAssociate     |
+|  3 | akshay.10@gmail.com     |     7878722234 |      12 | SrAssociate     |
+|  1 | deepak.63584@gmail.com  |     8956748596 |      12 | SrAssociate     |
++----+-------------------------+----------------+---------+-----------------+
+132 rows in set (0.00 sec)
