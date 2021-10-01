@@ -86,4 +86,8 @@ C:\Program Files\MySQL\MySQL Server 8.0\bin>mysqldump -u root -p --databases dem
 Enter password: **********
 
 
+/*Export to xml file*/
+
+C:\Program Files\MySQL\MySQL Server 8.0\bin>mysql -u root -p --xml -e "SELECT * FROM cpulogdatacopy.logdata" >C:\Users\saura\MYSQLbackup\cpulogdatacopy.xml 
+
 C:\Program Files\MySQL\MySQL Server 8.0\bin>
