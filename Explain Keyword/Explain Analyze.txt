@@ -1,0 +1,219 @@
+Enter password: **********
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 127
+Server version: 8.0.26 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2021, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| coders             |
+| cpulogdata         |
+| cpulogdatacopy     |
+| demo               |
+| demo1              |
+| demo1copy          |
+| employee           |
+| information_schema |
+| lms                |
+| lmscopy            |
+| mysql              |
+| performance_schema |
+| pets               |
+| sakila             |
+| sys                |
+| world              |
++--------------------+
+16 rows in set (0.09 sec)
+
+mysql> use lms;
+Database changed
+mysql> show tables;
++--------------------------------+
+| Tables_in_lms                  |
++--------------------------------+
+| app_parameters                 |
+| bycitymentorname               |
+| candidate_bank_det             |
+| candidate_docs                 |
+| candidate_qualification        |
+| candidate_techstack_assignment |
+| candidates                     |
+| candidates_bank_det_check      |
+| candidates_education_det_check |
+| candidates_personal_det_check  |
+| candidates_previous_info       |
+| cityname                       |
+| company                        |
+| company_requirement            |
+| fellowship_candidates          |
+| hired_candidates               |
+| hired_candidates_city_list     |
+| hired_candidates_column_range  |
+| hired_candidates_sub_partition |
+| lab                            |
+| lab_threshold                  |
+| maker_program                  |
+| mentor                         |
+| mentor_ideation_map            |
+| mentor_techstack               |
+| new_hired_candidates           |
+| previousdetail                 |
+| tech_stack                     |
+| tech_type                      |
+| temporary_mis                  |
+| user_details                   |
+| user_engagement_mis            |
+| user_roles                     |
++--------------------------------+
+33 rows in set (0.05 sec)
+
+
+
+mysql> select count(*) from fellowship_candidates;
++----------+
+| count(*) |
++----------+
+|        7 |
++----------+
+1 row in set (0.00 sec)
+
+
+
+mysql> explain select count(*) from fellowship_candidates where  parent_annual_sal > 50000;
+
++----+-------------+-----------------------+------------+------+---------------+------+---------+------+------+----------+-------------+
+| id | select_type | table                 | partitions | type | possible_keys | key  | key_len | ref  | rows | filtered | Extra       |
++----+-------------+-----------------------+------------+------+---------------+------+---------+------+------+----------+-------------+
+|  1 | SIMPLE      | fellowship_candidates | NULL       | ALL  | NULL          | NULL | NULL    | NULL |    7 |    33.33 | Using where |
++----+-------------+-----------------------+------------+------+---------------+------+---------+------+------+----------+-------------+
+1 row in set, 1 warning (0.01 sec)
+
+
+mysql> explain select count(*) from fellowship_candidates where  parent_annual_sal < 50000;
+
++----+-------------+-----------------------+------------+------+---------------+------+---------+------+------+----------+-------------+
+| id | select_type | table                 | partitions | type | possible_keys | key  | key_len | ref  | rows | filtered | Extra       |
++----+-------------+-----------------------+------------+------+---------------+------+---------+------+------+----------+-------------+
+|  1 | SIMPLE      | fellowship_candidates | NULL       | ALL  | NULL          | NULL | NULL    | NULL |    7 |    33.33 | Using where |
++----+-------------+-----------------------+------------+------+---------------+------+---------+------+------+----------+-------------+
+1 row in set, 1 warning (0.00 sec)
+
+
+
+/* Create Index on table   */
+mysql> create index candidate_index on fellowship_candidates(id);
+Query OK, 7 rows affected (0.47 sec)
+Records: 7  Duplicates: 0  Warnings: 0
+
+mysql> explain select * from fellowship_candidates where id = 5;
++----+-------------+-----------------------+------------+-------+-------------------------+---------+---------+-------+------+----------+-------+
+| id | select_type | table                 | partitions | type  | possible_keys           | key     | key_len | ref   | rows | filtered | Extra |
++----+-------------+-----------------------+------------+-------+-------------------------+---------+---------+-------+------+----------+-------+
+|  1 | SIMPLE      | fellowship_candidates | NULL       | const | PRIMARY,candidate_index | PRIMARY | 4       | const |    1 |   100.00 | NULL  |
++----+-------------+-----------------------+------------+-------+-------------------------+---------+---------+-------+------+----------+-------+
+1 row in set, 1 warning (0.00 sec)
+
+
+
+
+/*use EXPLAIN keyword and SELECT query UNION ALL operator*/
+
+mysql> explain select id as ID from fellowship_candidates
+    -> union all
+    -> select candidate_id as ID from candidate_qualification;
+
++----+-------------+-------------------------+------------+-------+---------------+--------------------------------+---------+------+------+----------+-------------+
+| id | select_type | table                   | partitions | type  | possible_keys | key                            | key_len | ref  | rows | filtered | Extra       |
++----+-------------+-------------------------+------------+-------+---------------+--------------------------------+---------+------+------+----------+-------------+
+|  1 | PRIMARY     | fellowship_candidates   | NULL       | index | NULL          | PRIMARY                        | 4       | NULL |    7 |   100.00 | Using index |
+|  2 | UNION       | candidate_qualification | NULL       | index | NULL          | FK_candidate_qual_candidate_id | 4       | NULL |    3 |   100.00 | Using index |
++----+-------------+-------------------------+------------+-------+---------------+--------------------------------+---------+------+------+----------+-------------+
+2 rows in set, 1 warning (0.09 sec)
+
+
+
+
+
+/*EXPLAIN ALALYZE -profiling tool for queries that shows information about spend time on query execution. It will plan the query, instrument it and execute it while counting rows and measuring time spent at various points in the execution plan. When execution finishes, print the plan and measurement instead of the query result.*/
+
+mysql> explain analyze select s.email,s.hired_city,candidate_qualification.training_institute,candidate_qualification.aggr_per
+    -> from fellowship_candidates as s
+    -> join candidate_qualification on (s.id=candidate_qualification.id)
+    -> where s.hired_city ='Pune';
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| EXPLAIN                                                                                                                                                                                                                                                                                                                                                                                                                                |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| -> Nested loop inner join  (cost=1.64 rows=1) (actual time=0.119..0.222 rows=1 loops=1)
+    -> Filter: (s.hired_city = 'Pune')  (cost=1.29 rows=1) (actual time=0.069..0.172 rows=1 loops=1)
+        -> Table scan on s  (cost=1.29 rows=7) (actual time=0.066..0.165 rows=7 loops=1)
+    -> Single-row index lookup on candidate_qualification using PRIMARY (id=s.id)  (cost=0.35 rows=1) (actual time=0.048..0.048 rows=1 loops=1)
+ |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+
+
+
+
+
+mysql> explain analyze select s.email,s.hired_city,candidate_qualification.training_institute,candidate_qualification.aggr_per
+    -> from fellowship_candidates as s
+    -> join candidate_qualification on (s.id=candidate_qualification.id)
+    -> where s.hired_city ='Mumbai';
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| EXPLAIN                                                                                                                                                                                                                                                                                                                                                                                                                                  |
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| -> Nested loop inner join  (cost=1.64 rows=1) (actual time=0.122..0.212 rows=1 loops=1)
+    -> Filter: (s.hired_city = 'Mumbai')  (cost=1.29 rows=1) (actual time=0.090..0.179 rows=1 loops=1)
+        -> Table scan on s  (cost=1.29 rows=7) (actual time=0.067..0.172 rows=7 loops=1)
+    -> Single-row index lookup on candidate_qualification using PRIMARY (id=s.id)  (cost=0.35 rows=1) (actual time=0.030..0.030 rows=1 loops=1)
+ |
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.02 sec)
+
+
+
+
+
+mysql> explain analyze select s.email,s.hired_city,candidate_qualification.training_institute,candidate_qualification.aggr_per
+    -> from fellowship_candidates as s
+    -> join candidate_qualification on (s.id=candidate_qualification.id)
+    -> where candidate_qualification.aggr_per>80;
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| EXPLAIN                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| -> Nested loop inner join  (cost=1.17 rows=1) (actual time=0.231..0.235 rows=1 loops=1)
+    -> Filter: (candidate_qualification.aggr_per > 80)  (cost=0.82 rows=1) (actual time=0.165..0.167 rows=1 loops=1)
+        -> Table scan on candidate_qualification  (cost=0.82 rows=3) (actual time=0.093..0.161 rows=3 loops=1)
+    -> Single-row index lookup on s using PRIMARY (id=candidate_qualification.id)  (cost=0.35 rows=1) (actual time=0.063..0.064 rows=1 loops=1)
+ |
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.01 sec)
+
+
+
+
+
+mysql> explain analyze select s.email,s.hired_city,candidate_qualification.training_institute,candidate_qualification.aggr_per
+    -> from fellowship_candidates as s
+    -> join candidate_qualification on (s.id=candidate_qualification.id)
+    -> where candidate_qualification.aggr_per < 80;
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| EXPLAIN                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| -> Nested loop inner join  (cost=1.17 rows=1) (actual time=0.176..0.307 rows=2 loops=1)
+    -> Filter: (candidate_qualification.aggr_per < 80)  (cost=0.82 rows=1) (actual time=0.098..0.165 rows=2 loops=1)
+        -> Table scan on candidate_qualification  (cost=0.82 rows=3) (actual time=0.095..0.159 rows=3 loops=1)
+    -> Single-row index lookup on s using PRIMARY (id=candidate_qualification.id)  (cost=0.35 rows=1) (actual time=0.068..0.068 rows=1 loops=2)
+ |
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
