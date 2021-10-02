@@ -1,0 +1,47 @@
+
+/*Joins On Three Tables*/
+
+mysql> SELECT hired_candidates.first_name, hired_candidates.last_name,hired_candidates.email,fellowship_candidates.local_addr,candidate_qualification.degree_name,candidate_qualification.passing_year
+    -> FROM hired_candidates
+    -> RIGHT JOIN fellowship_candidates ON hired_candidates.id =fellowship_candidates.id
+    -> INNER JOIN candidate_qualification ON hired_candidates.id =candidate_qualification.candidate_id;
++------------+-----------+-------------------------+------------+-------------+--------------+
+| first_name | last_name | email                   | local_addr | degree_name | passing_year |
++------------+-----------+-------------------------+------------+-------------+--------------+
+| deepak     | Patil     | deepak.63584@gmail.com  | Pune       | B.E         |         2015 |
+| deepak     | Patil     | deepak.63584@gmail.com  | Pune       | B.E         |         2015 |
+| deepak     | Patil     | deepak.63584@gmail.com  | Pune       | diploma     |         2015 |
++------------+-----------+-------------------------+------------+-------------+--------------+
+3 rows in set (0.02 sec)
+
+
+mysql> SELECT mentor.name,mentor.mentor_type,mentor_ideation_map.status,mentor_techstack.creator_user
+    -> FROM mentor
+    -> RIGHT JOIN mentor_ideation_map  ON mentor.id = mentor_ideation_map.id
+    -> INNER JOIN mentor_techstack  ON mentor.id = mentor_techstack.mentor_id;
++---------+-------------+--------+--------------+
+| name    | mentor_type | status | creator_user |
++---------+-------------+--------+--------------+
+| Manoj   | Head        |      1 |         NULL |
+| Suraj   | Head        |      1 |         NULL |
+| Nishant | Head        |      1 |         NULL |
++---------+-------------+--------+--------------+
+3 rows in set (0.00 sec)
+
+
+mysql> SELECT fellowship_candidates.first_name, fellowship_candidates.last_name,fellowship_candidates.email,user_details.password,user_details.contact_number,user_roles .role_name
+    -> FROM fellowship_candidates
+    -> RIGHT JOIN user_details  ON fellowship_candidates.id = user_details.id
+    -> INNER JOIN user_roles  ON fellowship_candidates.id = user_roles.user_id;
++------------+-----------+-------------------------+-----------+----------------+-----------------+
+| first_name | last_name | email                   | password  | contact_number | role_name       |
++------------+-----------+-------------------------+-----------+----------------+-----------------+
+| deepak     | Patil     | deepak.63584@gmail.com  | deepak@1  |     8956748596 | Manager         |
+| amit       | deshmukh  | amit.101@gmail.com      | amit@11   |     8956722222 | Developer       |
+| Akshay     | Pandit    | akshay.10@gmail.com     | akshay@1  |     7878722234 | Tester          |
+| Sumit      | Jadhav    | sumit40@gmail.com       | pravin@10 |     8956748596 | Senior Engineer |
+| shree      | shinde    | shree101@gmail.com      | akash@12  |     7875721134 | Tester          |
+| shree      | shinde    | shree101@gmail.com      | amit@13   |     8900725222 | JrAssociate     |
++------------+-----------+-------------------------+-----------+----------------+-----------------+
+6 rows in set (0.00 sec)
+
